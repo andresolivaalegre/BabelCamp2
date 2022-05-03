@@ -14,8 +14,6 @@ import model.Curso;
 public class FormacionServiceImpl implements FormacionService {
 	
 	AlumnosDao alumnosDao;
-	
-	
 	CursosDao cursosDao;
 	
 	
