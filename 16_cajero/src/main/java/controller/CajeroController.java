@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,20 +19,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import dto.CuentaDto;
 import dto.MovimientoDto;
 import service.CajeroService;
-
+@CrossOrigin("*")
 @Controller
 public class CajeroController {
 	@Autowired
 	CajeroService service;
 	
 	@PostMapping("Cuenta")
-	public String autenticar(@RequestParam("numeroCuenta") int numeroCuenta, HttpSession sesion, HttpServletRequest request) {
+	public String autenticar(@RequestParam("numeroCuenta") int numeroCuenta, HttpServletRequest request) {
 		CuentaDto cuenta=service.validarCuenta(numeroCuenta);
 		if(cuenta!=null) {
-			sesion.setAttribute("cuenta", cuenta);
 			return "menu";
 		}else {
-			return "cuenta";
+			return "inicioFallo";
 		}
 	}
 	
@@ -44,6 +44,7 @@ public class CajeroController {
 	
 	@PostMapping("Ingreso")
 	public String ingreso(@RequestParam("numeroCuenta") int numeroCuenta, @RequestParam("cantidad") int cantidad) {
+		System.out.println(numeroCuenta);
 		return service.ingreso(numeroCuenta, cantidad)?"menu":"ingreso";
 	}
 	

@@ -27,7 +27,9 @@ public class ConversorEntityDtoImpl implements ConversorEntityDto {
 
 	@Override
 	public CuentaDto cuentaToDto(Cuenta cuenta) {
+		if(cuenta!=null)
 		return new CuentaDto(cuenta.getNumeroCuenta(), cuenta.getSaldo(), cuenta.getTipoCuenta());
+		return null;
 	}
 
 	@Override
