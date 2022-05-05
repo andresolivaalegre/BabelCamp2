@@ -1,6 +1,5 @@
 package model;
 
-
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -34,6 +33,6 @@ public class Alumno {
 	private String nombre;
 	private String email;
 	private Integer edad;
-	@OneToMany(mappedBy = "alumno") //nombre en la entidad matricual
+	@OneToMany(mappedBy = "alumno") //nombre en la entidad matricula
 	private List<Matricula> matriculas;
 }

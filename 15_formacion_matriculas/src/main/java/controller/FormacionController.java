@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +21,7 @@ import dto.AlumnoDto;
 import dto.CursoDto;
 import dto.MatriculaDto;
 import service.FormacionService;
-
+@CrossOrigin("*")
 @Controller
 public class FormacionController {
 	@Autowired
@@ -66,16 +67,7 @@ public class FormacionController {
 	public String altaAlumno(@ModelAttribute AlumnoDto alumno) {
 		return service.altaAlumno(alumno)?"menu":"altaAlumno";
 	}
-	/*@GetMapping(value="Matriculas",produces=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<Curso> matriculas(@RequestParam("fechaIni") String fechaIni, @RequestParam("fechaFin") String fechaFin){
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-		try {
-			return service.consultarMatriculas(sdf.parse(fechaIni), sdf.parse(fechaFin));
-		}catch(ParseException ex) {
-			ex.printStackTrace();
-			return null;
-		}
-	}*/
+	
 	@GetMapping(value="Matriculas",produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<MatriculaDto> matriculas(@RequestParam("fechaIni") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaIni, 
 												@RequestParam("fechaFin") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaFin){		

@@ -9,6 +9,7 @@ import model.Alumno;
 
 public interface AlumnosDao extends JpaRepository<Alumno, String>{
 	Alumno findByUsuarioAndPassword(String usuario, String contrasenia);
+	
 	@Query("select a from Alumno a join a.matriculas m where m.curso.nombre=?1")
 	List<Alumno> findByCurso(String nombreCurso);
 }

@@ -18,5 +18,5 @@ import lombok.Setter;
 @Embeddable
 public class MatriculaPk implements Serializable {
 	private int idCurso;
-	private String usario;
+	private String usuario;
 }
